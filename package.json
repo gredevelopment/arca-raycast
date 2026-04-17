@@ -22,6 +22,12 @@
       "title": "Create Task",
       "description": "Creates a task in a specific list",
       "mode": "view"
+    },
+    {
+      "name": "my-tasks",
+      "title": "My Tasks",
+      "description": "View all tasks assigned to you across all workspaces",
+      "mode": "view"
     }
   ],
   "preferences": [
@@ -31,11 +37,22 @@
       "title": "Arca API key",
       "description": "Your Arca API key for authenticating requests.",
       "required": true
+    },
+    {
+      "name": "showCompletedTasks",
+      "type": "checkbox",
+      "title": "Show Completed Tasks",
+      "label": "Show completed & cancelled tasks",
+      "description": "When enabled, completed and cancelled tasks are shown in the My Tasks command.",
+      "default": false,
+      "required": false
     }
   ],
   "dependencies": {
     "@raycast/api": "^1.104.12",
-    "@raycast/utils": "^1.17.0"
+    "@raycast/utils": "^1.17.0",
+    "@types/turndown": "^5.0.6",
+    "turndown": "^7.2.4"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^2.0.4",
