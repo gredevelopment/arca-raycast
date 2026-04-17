@@ -1,5 +1,16 @@
 import { useEffect, useState } from "react";
-import { Action, ActionPanel, Form, getPreferenceValues, showToast, Toast, Icon, Color, Image } from "@raycast/api";
+import {
+  Action,
+  ActionPanel,
+  Form,
+  getPreferenceValues,
+  popToRoot,
+  showToast,
+  Toast,
+  Icon,
+  Color,
+  Image,
+} from "@raycast/api";
 
 type Preferences = {
   apiKey: string;
@@ -137,6 +148,7 @@ export default function Command() {
       const result = await res.json();
       if (!res.ok) throw new Error(result?.error || result?.message || "Failed to create task");
       await showToast({ style: Toast.Style.Success, title: "Task created", message: result.title });
+      await popToRoot();
     } catch (error: unknown) {
       await showToast({
         style: Toast.Style.Failure,
