@@ -7,6 +7,7 @@ import { Action, ActionPanel, Clipboard, Color, Detail, Icon, Image, List, showT
 export type Preferences = { apiKey: string; showCompletedTasks: boolean };
 
 export type Assignee = { id: number; name: string; avatar_url: string | null };
+export type Label = { id: number; name: string; color: string | null };
 export type Status = {
   id: number;
   name: string;
@@ -27,6 +28,7 @@ export type Task = {
   created_at: string;
   status: Status | null;
   assignees: Assignee[];
+  labels?: Label[];
 };
 export type Workspace = { id: number; name: string; slug: string };
 
@@ -143,6 +145,20 @@ export function TaskDetail({
           )}
           <Detail.Metadata.Label title="Start date" text={formatDate(task.start_date)} />
           <Detail.Metadata.Label title="Due date" text={formatDate(task.due_date)} />
+          {task.labels && task.labels.length > 0 && (
+            <>
+              <Detail.Metadata.Separator />
+              <Detail.Metadata.TagList title="Labels">
+                {task.labels.map((l) => (
+                  <Detail.Metadata.TagList.Item
+                    key={l.id}
+                    text={l.name}
+                    color={l.color ?? Color.SecondaryText}
+                  />
+                ))}
+              </Detail.Metadata.TagList>
+            </>
+          )}
           <Detail.Metadata.Separator />
           {task.assignees.map((a) => (
             <Detail.Metadata.Label
