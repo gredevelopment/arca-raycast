@@ -150,11 +150,7 @@ export function TaskDetail({
               <Detail.Metadata.Separator />
               <Detail.Metadata.TagList title="Labels">
                 {task.labels.map((l) => (
-                  <Detail.Metadata.TagList.Item
-                    key={l.id}
-                    text={l.name}
-                    color={l.color ?? Color.SecondaryText}
-                  />
+                  <Detail.Metadata.TagList.Item key={l.id} text={l.name} color={l.color ?? Color.SecondaryText} />
                 ))}
               </Detail.Metadata.TagList>
             </>
